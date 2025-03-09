@@ -9,7 +9,7 @@ namespace API.Controllers;
 
 public class AccountController(DataContext context) : BaseApiController
 {
-    [HttpPost("register")]
+    [HttpPost("register")] // api/account/register
     public async Task<ActionResult<AppUser>> Register(RegisterDto registerDto)
     {
         if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
@@ -32,5 +32,4 @@ public class AccountController(DataContext context) : BaseApiController
     {
         return await context.Users.AnyAsync(x => x.UserName.ToLower() == username.ToLower());
     }
-
 }
